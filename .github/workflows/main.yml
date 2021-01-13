@@ -1,0 +1,28 @@
+name: CI (Jira cloud example)
+on: [push]
+jobs:
+  build:
+  runs-on: ubuntu-latest
+    steps:
+    - uses: actions/checkout@v1
+    - name: Set up Java
+      uses: actions/setup-java@v1
+      with:
+        java-version: '1.8'
+    - name: Cache Maven packages
+      uses: actions/cache@v2
+      with:
+        path: ~/.m2
+        key: ${{ runner.os }}-m2-${{ hashFiles('**/pom.xml') }}
+        restore-keys: ${{ runner.os }}-m2
+    - name: Build with Maven
+      run: mvn clean compile test --file '**/pom.xml'
+    - name: Get Xray Cloud API token
+      env:
+        CLIENT_ID: BC04A857C67843B083F56C7B35BEDDEE
+        CLIENT_SECRET: b14e0899da7de1ed0fabeec35b18992165d13566bff20e2f3d47f692daa1b36e
+      id: xray-token
+      run: |
+        echo ::set-output name=XRAY_TOKEN::$(curl -H "Content-Type: application/json" -X POST --data "{ \"client_id\": \"$CLIENT_ID\",\"client_secret\": \"$CLIENT_SECRET\" }" https://xray.cloud.xpand-it.com/api/v1/authenticate| tr -d '"')
+    - name: Submit results to Xray
+      run: 'curl -H "Content-Type: application/json" -H "Authorization: Bearer ${{ steps.xray-token.outputs.XRAY_TOKEN }}" --data @IWECProject/target/cucumber.json  "https://xray.cloud.xpand-it.com/api/v1/import/execution/cucumber"'
