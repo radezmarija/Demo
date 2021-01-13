@@ -1,0 +1,92 @@
+[
+  {
+    "source": "User is on Home Page",
+    "steps": [
+      {
+        "name": "User is on Home Page",
+        "aggregatedDurations": {
+          "median": 0.436,
+          "average": 0.436
+        },
+        "durations": [
+          {
+            "duration": 0.436,
+            "location": "file:///D:/AzureRepo/Demo/IWECProject/Features/1_AZMARIJA-1.feature:9"
+          }
+        ]
+      }
+    ]
+  },
+  {
+    "source": "User Navigate to SignIn Page",
+    "steps": [
+      {
+        "name": "User Navigate to SignIn Page",
+        "aggregatedDurations": {
+          "median": 0.971,
+          "average": 0.971
+        },
+        "durations": [
+          {
+            "duration": 0.971,
+            "location": "file:///D:/AzureRepo/Demo/IWECProject/Features/1_AZMARIJA-1.feature:10"
+          }
+        ]
+      }
+    ]
+  },
+  {
+    "source": "User enters valid UserName and valid Password",
+    "steps": [
+      {
+        "name": "User enters valid UserName and valid Password",
+        "aggregatedDurations": {
+          "median": 0.003,
+          "average": 0.003
+        },
+        "durations": [
+          {
+            "duration": 0.003,
+            "location": "file:///D:/AzureRepo/Demo/IWECProject/Features/1_AZMARIJA-1.feature:11"
+          }
+        ]
+      }
+    ]
+  },
+  {
+    "source": "User should be successfully loged in and see MyAccount",
+    "steps": [
+      {
+        "name": "User should be successfully loged in and see MyAccount",
+        "aggregatedDurations": {
+          "median": 0.064,
+          "average": 0.064
+        },
+        "durations": [
+          {
+            "duration": 0.064,
+            "location": "file:///D:/AzureRepo/Demo/IWECProject/Features/1_AZMARIJA-1.feature:12"
+          }
+        ]
+      }
+    ]
+  },
+  {
+    "source": "End test by closing the window",
+    "steps": [
+      {
+        "name": "End test by closing the window",
+        "aggregatedDurations": {
+          "median": 0.841,
+          "average": 0.841
+        },
+        "durations": [
+          {
+            "duration": 0.841,
+            "location": "file:///D:/AzureRepo/Demo/IWECProject/Features/1_AZMARIJA-1.feature:13"
+          }
+        ]
+      }
+    ]
+  }
+]

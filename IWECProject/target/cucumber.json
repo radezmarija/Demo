@@ -1,0 +1,99 @@
+[
+  {
+    "line": 1,
+    "elements": [
+      {
+        "start_timestamp": "2020-12-11T19:40:11.912Z",
+        "line": 4,
+        "name": "mareTest",
+        "description": "\t\tFeature: Login Functionality",
+        "id": "maretest;maretest",
+        "type": "scenario",
+        "keyword": "Scenario",
+        "steps": [],
+        "tags": [
+          {
+            "name": "@TEST_AZMARIJA-1"
+          }
+        ]
+      },
+      {
+        "start_timestamp": "2020-12-11T19:40:12.067Z",
+        "line": 7,
+        "name": "Sign in User with Valid Credentials",
+        "description": "",
+        "id": "maretest;sign-in-user-with-valid-credentials",
+        "type": "scenario",
+        "keyword": "Scenario",
+        "steps": [
+          {
+            "result": {
+              "duration": 13436000000,
+              "status": "passed"
+            },
+            "line": 9,
+            "name": "User is on Home Page",
+            "match": {
+              "location": "stepDefinition.SignIn.user_is_on_Home_Page()"
+            },
+            "keyword": "Given "
+          },
+          {
+            "result": {
+              "duration": 3971000000,
+              "status": "passed"
+            },
+            "line": 10,
+            "name": "User Navigate to SignIn Page",
+            "match": {
+              "location": "stepDefinition.SignIn.user_Navigate_to_SignIn_Page()"
+            },
+            "keyword": "When "
+          },
+          {
+            "result": {
+              "duration": 6003000000,
+              "status": "passed"
+            },
+            "line": 11,
+            "name": "User enters valid UserName and valid Password",
+            "match": {
+              "location": "stepDefinition.SignIn.user_enters_valid_UserName_and_valid_Password()"
+            },
+            "keyword": "And "
+          },
+          {
+            "result": {
+              "duration": 64000000,
+              "status": "passed"
+            },
+            "line": 12,
+            "name": "User should be successfully loged in and see MyAccount",
+            "match": {
+              "location": "stepDefinition.SignIn.user_should_be_successfully_loged_in_and_see_MyAccount()"
+            },
+            "keyword": "Then "
+          },
+          {
+            "result": {
+              "duration": 841000000,
+              "status": "passed"
+            },
+            "line": 13,
+            "name": "End test by closing the window",
+            "match": {
+              "location": "stepDefinition.SignIn.end_test_by_closing_the_window()"
+            },
+            "keyword": "Then "
+          }
+        ]
+      }
+    ],
+    "name": "mareTest",
+    "description": "",
+    "id": "maretest",
+    "keyword": "Feature",
+    "uri": "file:Features/1_AZMARIJA-1.feature",
+    "tags": []
+  }
+]

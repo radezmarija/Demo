@@ -1,0 +1,10 @@
+
+@TEST_AZMARIJA-1
+Scenario: mareTest [90m# Features/1_AZMARIJA-1.feature:4[0m
+
+Scenario: Sign in User with Valid Credentials                 [90m# Features/1_AZMARIJA-1.feature:7[0m
+  [32mGiven [0m[32mUser is on Home Page[0m                                  [90m# stepDefinition.SignIn.user_is_on_Home_Page()[0m
+  [32mWhen [0m[32mUser Navigate to SignIn Page[0m                           [90m# stepDefinition.SignIn.user_Navigate_to_SignIn_Page()[0m
+  [32mAnd [0m[32mUser enters valid UserName and valid Password[0m           [90m# stepDefinition.SignIn.user_enters_valid_UserName_and_valid_Password()[0m
+  [32mThen [0m[32mUser should be successfully loged in and see MyAccount[0m [90m# stepDefinition.SignIn.user_should_be_successfully_loged_in_and_see_MyAccount()[0m
+  [32mThen [0m[32mEnd test by closing the window[0m                         [90m# stepDefinition.SignIn.end_test_by_closing_the_window()[0m
