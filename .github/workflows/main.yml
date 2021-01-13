@@ -25,7 +25,7 @@ jobs:
       id: xray-token
       shell: bash
       run: |
-        echo ::set-output name=XRAY_TOKEN::export token=$(curl -H "Content-Type: application/json" -X POST --data "{ \"client_id\": \"BC04A857C67843B083F56C7B35BEDDEE\",\"client_secret\": \"b14e0899da7de1ed0fabeec35b18992165d13566bff20e2f3d47f692daa1b36e\" }" https://xray.cloud.xpand-it.com/api/v1/authenticate| tr -d '"')
+        echo ::set-output name=XRAY_TOKEN::$(curl -H "Content-Type: application/json" -X POST --data "{ \"client_id\": \"BC04A857C67843B083F56C7B35BEDDEE\",\"client_secret\": \"b14e0899da7de1ed0fabeec35b18992165d13566bff20e2f3d47f692daa1b36e\" }" https://xray.cloud.xpand-it.com/api/v1/authenticate| tr -d '"')
     - name: Submit results to Xray
       shell: bash
       run: 'curl -H "Content-Type: application/json" -X POST -H "Authorization: Bearer ${{ steps.xray-token.outputs.XRAY_TOKEN }}" --data @IWECProject/target/cucumber.json "https://xray.cloud.xpand-it.com/api/v1/import/execution/cucumber"'
