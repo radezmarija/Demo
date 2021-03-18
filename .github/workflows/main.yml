@@ -59,4 +59,4 @@ jobs:
         # Defines if the action should continue after a single import error occurred.
         # Specifies the level of parallelism to import to Xray.
         # Links to a json file, defining the meta information to create the test execution ticket.
-        testExecutionJson: cucumber.json
+        testExecutionJson: './IWECProject/target/cucumber.json'
