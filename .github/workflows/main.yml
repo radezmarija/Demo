@@ -16,16 +16,19 @@ jobs:
         path: ~/.m2
         key: ${{ runner.os }}-m2-${{ hashFiles('**/pom.xml') }}
         restore-keys: ${{ runner.os }}-m2
-    - name: Build with Maven
-      run: mvn clean compile test --file IWECProject/pom.xml
     - name: Get Xray Cloud API token
-      env:
-        CLIENT_ID: ${{secrets.client_id}}
-        CLIENT_SECRET: ${{secrets.client_secret}}
       id: xray-token
       shell: bash
       run: |
         echo ::set-output name=XRAY_TOKEN::$(curl -H "Content-Type: application/json" -X POST --data "{ \"client_id\": \"$CLIENT_ID\",\"client_secret\": \"$CLIENT_SECRET\" }" https://xray.cloud.xpand-it.com/api/v1/authenticate| tr -d '"')
+    - name: Get Feature from Xray issue
+      shell: bash
+      run: 'curl -H "Content-Type: application/json" --output features/features.zip -X GET -H "Authorization: Bearer ${{ steps.xray-token.outputs.XRAY_TOKEN }}"  "https://xray.cloud.xpand-it.com/api/v1/export/cucumber?keys=AZMARIJA-1"'
+    - name: Unzip the features.zip
+      shell: bash
+      run: unzip -o features/features.zip -d ./IWECProject/Features
+    - name: Build with Maven
+      run: mvn clean compile test --file IWECProject/pom.xml
     - name: Submit results to Xray
       shell: bash
       run: 'curl -H "Content-Type: application/json" -X POST -H "Authorization: Bearer ${{ steps.xray-token.outputs.XRAY_TOKEN }}" --data @IWECProject/target/cucumber.json "https://xray.cloud.xpand-it.com/api/v1/import/execution/cucumber"'
