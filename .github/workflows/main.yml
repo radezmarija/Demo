@@ -41,9 +41,9 @@ jobs:
         # Defines which variant of xray to target at [cloud vs server]
         # The endpoint for an xray server instance. (Keep empty for cloud instances)
         # The username to login to xray.
-        username: marija.radezova@gmail.com
+        username: 'marija.radezova@gmail.com'
         # The password to login to xray.
-        password: 6v56oCaXusDGkm2W0az5C355
+        password: '6v56oCaXusDGkm2W0az5C355'
         # A `glob` pattern, to find all test results which should get imported.
         testPaths: '**/target/*.json'
         # The format of the to be imported data. ["xray", "cucumber", "behave", "junit", "testng", "nunit", "xunit", "robot", "bundle"].
