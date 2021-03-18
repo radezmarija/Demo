@@ -1,4 +1,4 @@
-vname: CI (Jira cloud example)
+name: CI (Jira cloud example)
 on: [push]
 jobs:
   build:
