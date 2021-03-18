@@ -24,9 +24,39 @@ jobs:
     - name: Get Feature from Xray issue
       working-directory: ./IWECProject
       shell: bash
-      run: 'curl -H "Content-Type: application/json" --output Features/features.zip -X GET -H "Authorization: Bearer ${{steps.xray-token.outputs.XRAY_TOKEN}}" https://xray.cloud.xpand-it.com/api/v1/export/cucumber?keys=AZMARIJA-52'
+      run: 'curl -H "Content-Type: application/json" --output Features/features.zip -X GET -H "Authorization: Bearer ${{ steps.xray-token.outputs.XRAY_TOKEN }}" https://xray.cloud.xpand-it.com/api/v1/export/cucumber?keys=AZMARIJA-52'
+    - name: Display the path
+      run: echo %PATH%
+      shell: cmd
     - name: Build with Maven
       run: mvn clean compile test --file IWECProject/pom.xml
     - name: Submit results to Xray
       shell: bash
-      run: 'curl -H "Content-Type: application/json" -X POST -H "Authorization: Bearer ${{steps.xray-token.outputs.XRAY_TOKEN}}" --data @Demo/Demo/IWECProject/target/cucumber.json https://xray.cloud.xpand-it.com/api/v1/import/execution/cucumber'
+      run: 'curl -H "Content-Type: application/json" -X POST -H "Authorization: Bearer ${{ steps.xray-token.outputs.XRAY_TOKEN }}" --data @DIWECProject/target/cucumber.json https://xray.cloud.xpand-it.com/api/v1/import/execution/cucumber'
+    - name: xray-action
+      # You may pin to the exact commit or the version.
+      # uses: mikepenz/xray-action@610b59d9f8740c9f66617f620b7bca9eefe63a19
+      uses: mikepenz/xray-action@v1.0.0
+      with:
+        # Defines which variant of xray to target at [cloud vs server]
+        # The endpoint for an xray server instance. (Keep empty for cloud instances)
+        # The username to login to xray.
+        username: marija.radezova@gmail.com
+        # The password to login to xray.
+        password: 6v56oCaXusDGkm2W0az5C355
+        # A `glob` pattern, to find all test results which should get imported.
+        testPaths: '**/target/*.json'
+        # The format of the to be imported data. ["xray", "cucumber", "behave", "junit", "testng", "nunit", "xunit", "robot", "bundle"].
+        testFormat: "cucumber"
+        # Key of the project where the Test Execution (if the testExecKey parameter was not provided) and the tests (if they are not created yet) are going to be created.
+        projectKey: AZMARIJA
+        # Key of the Test Plan; if you specify the Test Plan, the Tests will be added automatically to the Test Plan if they are not part of it.
+        # A string containing a list of test environments separated by ";".
+        # Source code and documentation version used in the test execution.
+        # The Fix Version associated with the test execution (it supports only one value).
+        # If no `testExecKey` is provided, it will generate a testExec with the first import, and reuse the same for all other imports.
+        # Defines if the action should fail if an import error occurred.
+        # Defines if the action should continue after a single import error occurred.
+        # Specifies the level of parallelism to import to Xray.
+        # Links to a json file, defining the meta information to create the test execution ticket.
+        testExecutionJson: cucumber.json
