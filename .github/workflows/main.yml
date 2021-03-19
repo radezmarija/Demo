@@ -20,7 +20,7 @@ jobs:
       env:
         CLIENT_ID: ${{ secrets.client_id }}
         CLIENT_SECRET: ${{ secrets.client_secret }}
-        KEY: 'AZMARIJA-52'
+        KEY: ${{ secrets.key }}
       id: xray-token
       shell: bash
       run: |
