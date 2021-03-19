@@ -40,7 +40,7 @@ jobs:
       with:
         username: ${{ secrets.client_id }}
         password: ${{ secrets.client_secret }}
-        testExecutionJson: "**/target/cucumber.json"
+        testExecutionJson: "./IWECProject/target/cucumber.json"
         projectKey: "AZMARIJA"
         testExecKey: "AZMARIJA-52"
         testFormat: "cucumber"
