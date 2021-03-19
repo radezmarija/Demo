@@ -45,3 +45,4 @@ jobs:
         testExecKey: "AZMARIJA-52"
         testFormat: "cucumber"
         importParallelism: 1
+        testPaths: "**/target/cucumber.json"
