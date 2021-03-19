@@ -40,7 +40,8 @@ jobs:
       with:
         username: ${{ secrets.client_id }}
         password: ${{ secrets.client_secret }}
-        testPaths: "**/target/cucumber.json"
+        testExecutionJson: "**/target/cucumber.json"
         projectKey: "AZMARIJA"
         testExecKey: "AZMARIJA-52"
-        testFormat: "cucumber"        
+        testFormat: "cucumber"
+        importParallelism: 1
