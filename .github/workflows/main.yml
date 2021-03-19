@@ -36,6 +36,10 @@ jobs:
 #      shell: bash
  #     run: 'curl -H "Content-Type: application/json" -X POST -H "Authorization: Bearer ${{ steps.xray-token.outputs.XRAY_TOKEN }}" --data "@IWECProject/target/cucumber.json" "https://xray.cloud.xpand-it.com/api/v1/import/execution/cucumber"'
     - name: Submit results to Xray
+      env:
+          CLIENT_ID: ${{ secrets.client_id }}
+          CLIENT_SECRET: ${{ secrets.client_secret }}
+          ISSUE_KEY: ${{ secrets.key }}
       uses: mikepenz/xray-action@v0.9.4
       with:
         username: $CLIENT_ID
