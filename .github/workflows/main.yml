@@ -37,8 +37,8 @@ jobs:
     - name: Submit results to Xray
       uses: mikepenz/xray-action@v0.9.4
       with:
-        username: "$CLIENT_ID"
-        password: "$CLIENT_SECRET"
+        username: $CLIENT_ID
+        password: $CLIENT_SECRET
 #        testExecutionJson: "./IWECProject/target/cucumber.json"
         projectKey: "AZMARIJA"
         testExecKey: "AZMARIJA-59"
