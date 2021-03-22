@@ -3,7 +3,10 @@ on: [push]
 jobs:
   build:
     runs-on: windows-2019
- 
+    env:
+      CLIENT_ID: ${{ secrets.client_id }}
+      CLIENT_SECRET: ${{ secrets.client_secret }}
+      ISSUE_KEY: ${{ secrets.key }}
     steps:
     - uses: actions/checkout@v1
     - name: Set up Java
@@ -17,10 +20,6 @@ jobs:
         key: ${{ runner.os }}-m2-${{ hashFiles('**/pom.xml') }}
         restore-keys: ${{ runner.os }}-m2
     - name: Get Xray Cloud API token
-      env:
-        CLIENT_ID: ${{ secrets.client_id }}
-        CLIENT_SECRET: ${{ secrets.client_secret }}
-        ISSUE_KEY: ${{ secrets.key }}
       id: xray-token
       shell: bash
       run: |
@@ -42,7 +41,7 @@ jobs:
         password: "$CLIENT_SECRET"
 #        testExecutionJson: "./IWECProject/target/cucumber.json"
         projectKey: "AZMARIJA"
-        testExecKey: "AZMARIJA-52"
+        testExecKey: "AZMARIJA-59"
         testFormat: "cucumber"
         importParallelism: 1
         testPaths: "**/target/cucumber.json"
