@@ -2,7 +2,7 @@ name: CI (Jira cloud example)
 on: [push]
 jobs:
   build:
-    runs-on: windows-2019
+    runs-on: windows-latest
     env:
       CLIENT_ID: ${{ secrets.client_id }}
       CLIENT_SECRET: ${{ secrets.client_secret }}
@@ -26,22 +26,11 @@ jobs:
         echo ::set-output name=XRAY_TOKEN::$(curl -H "Content-Type: application/json" -X POST --data "{ \"client_id\": \"$CLIENT_ID\",\"client_secret\": \"$CLIENT_SECRET\" }" https://xray.cloud.xpand-it.com/api/v1/authenticate| tr -d '"')
     - name: Get Feature from Xray issue
       shell: bash
-      run: 'curl -H "Content-Type: application/json" --output ./features.zip -X GET -H "Authorization: Bearer ${{ steps.xray-token.outputs.XRAY_TOKEN }}" https://xray.cloud.xpand-it.com/api/v1/export/cucumber?keys=AZMARIJA-52'
+      run: 'curl -H "Content-Type: application/json" --output ./features.zip -X GET -H "Authorization: Bearer ${{ steps.xray-token.outputs.XRAY_TOKEN }}" https://xray.cloud.xpand-it.com/api/v1/export/cucumber?keys=$ISSUE_KEY'
     - name: Unzip features file
       run: 'unzip -o ./features.zip -d ./IWECProject/Features'
     - name: Build with Maven
       run: mvn clean compile test --file IWECProject/pom.xml
-#    - name: Submit results to Xray
-#      shell: bash
- #     run: 'curl -H "Content-Type: application/json" -X POST -H "Authorization: Bearer ${{ steps.xray-token.outputs.XRAY_TOKEN }}" --data "@IWECProject/target/cucumber.json" "https://xray.cloud.xpand-it.com/api/v1/import/execution/cucumber"'
     - name: Submit results to Xray
-      uses: mikepenz/xray-action@v0.9.4
-      with:
-        username: BC04A857C67843B083F56C7B35BEDDEE
-        password: b14e0899da7de1ed0fabeec35b18992165d13566bff20e2f3d47f692daa1b36e
-#        testExecutionJson: "./IWECProject/target/cucumber.json"
-        projectKey: "AZMARIJA"
-        testExecKey: "AZMARIJA-59"
-        testFormat: "cucumber"
-        importParallelism: 1
-        testPaths: "**/target/cucumber.json"
+      shell: bash
+      run: 'curl -H "Content-Type: application/json" -X POST -H "Authorization: Bearer ${{ steps.xray-token.outputs.XRAY_TOKEN }}" --data "@IWECProject/target/cucumber.json" "https://xray.cloud.xpand-it.com/api/v1/import/execution/cucumber"'
