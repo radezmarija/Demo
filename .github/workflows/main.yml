@@ -30,7 +30,7 @@ jobs:
     - name: Unzip features file
       run: 'unzip -o ./features.zip -d ./IWECProject/Features'
     - name: Build with Maven
-      run: mvn clean compile test --file IWECProject/pom.xml
+      run: mvn compile test -Dcucumber.plugin="json:report.json" -Dcucumber.features="./IWECProject/Features/" --file IWECProject/pom.xml
     - name: Submit results to Xray
       shell: bash
-      run: 'curl -H "Content-Type: application/json" -X POST -H "Authorization: Bearer ${{ steps.xray-token.outputs.XRAY_TOKEN }}" --data "@IWECProject/target/cucumber.json" "https://xray.cloud.xpand-it.com/api/v1/import/execution/cucumber"'
+      run: 'curl -H "Content-Type: application/json" -X POST -H "Authorization: Bearer ${{ steps.xray-token.outputs.XRAY_TOKEN }}" --data "@IWECProject/report.json" "https://xray.cloud.xpand-it.com/api/v1/import/execution/cucumber"'
